@@ -5,6 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello it's Task Manager, try to add task");
 
+
         Task task1 = new Task("Cleaning","Clean the room",
                 RepeatabilityTask.EVERY_DAY,TypeTask.PERSONAL_TASK);
 
