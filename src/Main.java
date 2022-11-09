@@ -40,7 +40,6 @@ public class Main {
         }
     }
 
-
     public static void printMenu() {
         System.out.println("""
                 1. Add Task      
@@ -68,9 +67,8 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Not correct field, try again");
             }
-
-
         }
+
         LocalTime taskTime = null;
         boolean checkTime = true;
         while (checkTime) {
@@ -83,15 +81,11 @@ public class Main {
                 System.out.println("Not correct field, try again");
             }
         }
-
         LocalDateTime resultDate = LocalDateTime.of(taskOfDate, taskTime);
-
 
         System.out.println("Enter Type task : Person(1) or Work (2)");
         int type = scanner.nextInt();
         TypeTask taskType = type == 1 ? TypeTask.PERSONAL_TASK : TypeTask.WORK_TASK;
-
-
         System.out.println("""
                 Enter the Repeatability task
                 1. Day task
