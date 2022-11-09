@@ -1,51 +1,91 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Scanner;
 
-public class Task {
+public class Task implements Repeatability {
 
-//    Scanner scanner1 = new Scanner(System.in);
-//    Scanner scanner2 = new Scanner(System.in);
-//    Scanner scanner3 = new Scanner(System.in);
-
+    private int id  ;
     private String headName ;
-    private String decription;
+    private String description;
+
     private TypeTask typeTask;
+    private LocalDateTime dateTime;
 
+    private static int idGenerator = 0;
 
+    public int getId() {
+        return id;
+    }
 
-    private RepeatabilityTask repeatabilityTask;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-   private Date date;
+    public TypeTask getTypeTask() {
+        return typeTask;
+    }
 
-    public Task(String headName, String decription,
-                RepeatabilityTask repeatabilityTask, TypeTask typeTask) {
-        this.headName = headName;
-        this.decription = decription;
+    public void setTypeTask(TypeTask typeTask) {
         this.typeTask = typeTask;
-        this.date =  new Date();
-        this.repeatabilityTask = repeatabilityTask;
+    }
 
+    public static int getIdGenerator() {
+        return idGenerator;
+    }
+
+    public static void setIdGenerator(int idGenerator) {
+        Task.idGenerator = idGenerator;
+    }
+
+    public String getHeadName() {
+        return headName;
+    }
+
+    public void setHeadName(String headName) {
+        this.headName = headName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+
+    public Task(String headName, String description,TypeTask typeTask,LocalDateTime taskDateTime ) {
+        this.headName = headName;
+        this.description = description;
+        this.typeTask = typeTask;
+        this.dateTime = taskDateTime;
+        this.id = idGenerator++;
 
     }
 
-    public void createTask() {
-
-
-
-
-    }
 
     @Override
     public String toString() {
         return "Task{" +
-                "headName='" + headName + '\'' +
-                ", decription='" + decription + '\'' +
-                ", date=" + date +
-                '}'+"\n";
+                "id=" + id +
+                ", headName='" + headName + '\'' +
+                ", description='" + description + '\'' +
+                ", typeTask=" + typeTask +
+                ", dateTime=" + dateTime +
+                '}';
+    }
+
+    @Override
+    public boolean isAvailable(LocalDate inputDate) {
+        return inputDate.isEqual(getDateTime().toLocalDate());
     }
 }
 
